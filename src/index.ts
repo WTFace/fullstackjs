@@ -1,4 +1,3 @@
-
 import express from 'express';
 import endpointLogger from './utilities/logger';
 var app = express();

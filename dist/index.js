@@ -1,7 +1,4 @@
 "use strict";
-// import arrays from './utilities/arrays.js';
-// import numbers from './utilities/numbers.js';
-// import strings from './utilities/strings.js';
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -14,10 +11,6 @@ var port = 3000;
 router.use('/user', logger_1.default, function (req, res, next) {
     next();
     res.send('user page');
-});
-router.use('/admin', logger_1.default, function (req, res, next) {
-    next();
-    res.send('admin page');
 });
 app.use('/', router);
 app.listen(port, function () {
