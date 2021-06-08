@@ -1,6 +1,6 @@
 import express from 'express';
 import endpointLogger from './utilities/logger';
-import path from 'path';
+import processImg from './utilities/resize';
 
 const app = express();
 const router = express.Router();
@@ -13,14 +13,22 @@ router.use('/img', endpointLogger, function (req, res, next) {
     const width = req.query.width;
     const height = req.query.height;
 
-    let html = `<!DOCTYPE html>
+    const newFile = processImg(
+        name as string,
+        +(width as string),
+        +(height as string)
+    );
+    const content =
+        newFile === 'failed'
+            ? '<h2>failed to resize</h2>'
+            : `<img src="${newFile.split('public/')[1]}" alt="">`;
+
+    const html = `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
     </head>
-    <body>
-        <img src="original/${name}.jpeg" alt="" width="${width}" height="${height}">
-    </body>
+    <body>${content}</body>
     </html>`;
     res.set('Content-Type', 'text/html');
     res.send(html);
