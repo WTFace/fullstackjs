@@ -9,14 +9,9 @@ app.use(express.static('public'));
 
 router.use('/img', endpointLogger, function (req, res, next) {
     next();
-    // const root = path.join(__dirname, '../public');
     const name = req.query.filename;
     const width = req.query.width;
     const height = req.query.height;
-
-    if (!name) {
-        res.send('need to pass filename');
-    }
 
     let html = `<!DOCTYPE html>
     <html lang="en">

@@ -6,6 +6,9 @@ const endpointLogger = (
     next: Function
 ): void => {
     console.log(req.originalUrl);
+    if (!req.query.filename) {
+        res.send('need to pass filename');
+    }
     next();
 };
 
