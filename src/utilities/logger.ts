@@ -1,7 +1,7 @@
 import express from 'express';
 import { access } from 'fs';
 
-const endpointLogger = (
+const fileCheck = (
     req: express.Request,
     res: express.Response,
     next: Function
@@ -19,4 +19,4 @@ const endpointLogger = (
     next();
 };
 
-export default endpointLogger;
+export default fileCheck;
