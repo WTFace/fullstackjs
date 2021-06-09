@@ -12,7 +12,7 @@ const fileCheck = (
     }
     access(`public/original/${req.query.filename}.jpeg`, (err) => {
         if (err) {
-            res.send('no such file exists!');
+            res.status(404).send('no such file exists!');
         }
     });
 
