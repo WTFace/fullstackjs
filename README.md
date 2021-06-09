@@ -1,5 +1,8 @@
 prettier && build %% test  
-npm run test
-
+npm run test  
+  
 running server  
-node dist/.
+npm run start  
+  
+image processing endpoint  
+localhost:3000/img?filename={filename}&width={width}&height={height}
