@@ -15,8 +15,11 @@
   "devDependencies": {
     "@types/express": "^4.17.12",
     "@types/jasmine": "^3.7.6",
+    "@types/jasmine-es6-promise-matchers": "^0.0.33",
     "@types/node": "^15.6.1",
     "@types/sharp": "^0.28.3",
+    "@types/supertest": "^2.0.11",
+    "jasmine-es6-promise-matchers": "^2.1.2",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
     "ts-node": "^10.0.0",
@@ -26,6 +29,7 @@
     "express": "^4.17.1",
     "jasmine": "^3.7.0",
     "jasmine-spec-reporter": "^7.0.0",
-    "sharp": "^0.28.3"
+    "sharp": "^0.28.3",
+    "supertest": "^6.1.3"
   }
 }
