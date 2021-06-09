@@ -1,5 +1,5 @@
 import express from 'express';
-import fileCheck from './utilities/logger';
+import fileCheck from './utilities/fileCheck';
 import processImg from './utilities/resize';
 
 const app = express();
