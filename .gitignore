@@ -1,5 +1,4 @@
 /.vscode
 /node_modules
 /dist
-/resized/*
 .DS_Store
