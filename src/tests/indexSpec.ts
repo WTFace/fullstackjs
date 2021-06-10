@@ -10,4 +10,12 @@ describe('Test endpoint responses', () => {
         expect(response.status).toBe(404);
         done();
     });
+
+    it('will send status 400 for invalid dimension parameter', async (done) => {
+        const response = await request.get(
+            '/img?filename=fjord&width=200&height=hi'
+        );
+        expect(response.status).toBe(400);
+        done();
+    });
 });
