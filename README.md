@@ -5,4 +5,4 @@ running server
 npm run start  
   
 image processing endpoint  
-localhost:3000/img?filename={filename}&width={width}&height={height}
+localhost:3000/img?filename=fjord&width=200&height=200
