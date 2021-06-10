@@ -1,6 +1,7 @@
 import express from 'express';
-import fileCheck from './utilities/urlCheck';
+import urlCheck from './utilities/urlCheck';
 import processImg from './utilities/resize';
+import hasFile from './utilities/hasFile';
 
 const app = express();
 const router = express.Router();
@@ -9,32 +10,32 @@ app.use(express.static('public'));
 
 router.use(
     '/img',
-    fileCheck,
+    urlCheck,
     async function (
         req: express.Request,
         res: express.Response,
         next: Function
     ): Promise<void> {
-        next();
         const name = req.query.filename;
         const width = req.query.width;
         const height = req.query.height;
+        const resizedPath = `${name}-${width}${height}`;
 
-        await processImg(
-            name as string,
-            +(width as string),
-            +(height as string)
-        )
-            .then((filePath) => {
-                const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body><img src="${
-                    filePath.split('public/')[1]
-                }" alt=""></body></html>`;
-                res.set('Content-Type', 'text/html');
-                return res.send(html);
-            })
-            .catch((e) => {
-                console.log(e);
+        const makeHtml = (name: string) =>
+            `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body><img src="resized/${name}.jpeg" alt=""></body></html>`;
+
+        if (hasFile('resized', resizedPath)) {
+            res.status(200).send(makeHtml(resizedPath));
+        } else {
+            await processImg(
+                name as string,
+                Number(width as string),
+                Number(height as string)
+            ).then((data) => {
+                data === 'failed' && res.status(500).send('failed to resize');
+                res.status(200).send(makeHtml(resizedPath));
             });
+        }
     }
 );
 
